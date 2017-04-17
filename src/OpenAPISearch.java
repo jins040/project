@@ -18,21 +18,21 @@ public class OpenAPISearch {
         try {
 
             String text = URLEncoder.encode("데이터과학", "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;   // json 결과
+            String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;   // json 결과, ?query=에 text 붙여서 검색어 전달
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
 
             URL url = new URL(apiURL);
 
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();    // header 설정
+            // header
             con.setRequestMethod("GET");
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 
             int responseCode = con.getResponseCode();   // Gets the status code from an HTTP response message.
 
+            // Body
             BufferedReader br;
-
             if(responseCode==200) { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             } else {    // 에러 발생

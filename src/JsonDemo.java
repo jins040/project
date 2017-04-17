@@ -1,4 +1,4 @@
-
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -8,9 +8,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Created by danawacomputer on 2017-04-14.
+ * Created by danawacomputer on 2017-04-17.
  */
-public class openAPITranslation {
+public class JsonDemo {
 
     public static void main(String[] args) {
 
@@ -63,7 +63,31 @@ public class openAPITranslation {
             br.close();
             System.out.println(response.toString());
 
-            // Jason Parsing
+
+            /*
+             * Jason Parsing
+             */
+            String jsonData = response.toString();
+
+            JSONObject obj = new JSONObject(jsonData);
+
+            JSONObject msgObj = obj.getJSONObject("message");
+
+            String type = msgObj.getString("@type");
+
+            System.out.println(type);
+
+            JSONObject resObj = msgObj.getJSONObject("result");
+            String result = resObj.getString("translatedText");
+
+            System.out.println(result);
+
+            // 한방에
+            String result2 = obj.getJSONObject("message")
+                    .getJSONObject("result")
+                    .getString("translated");
+
+            System.out.println(result2);
 
 
 
@@ -73,4 +97,5 @@ public class openAPITranslation {
 
     }// main 끝
 }
+
 
