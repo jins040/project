@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 public class openAPITranslation {
 
     public static void main(String[] args) {
-
+        //오픈API ID, PW
         String clientId = "zYKOAUxRRPueChQC3b9b";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "RoFsIfRyvz";//애플리케이션 클라이언트 시크릿값";
 
